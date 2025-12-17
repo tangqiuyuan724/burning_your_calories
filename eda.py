@@ -18,11 +18,11 @@ print(f'Shape = {df.shape}')
 print("=" * 50)
 # describe data
 print("Description of data:")
-df.describe().T
+print(df.describe().T)
 print("=" * 50)
 # data info to know numerical and categorical values
 print("Information of data:")
-df.info()
+print(df.info())
 print("=" * 50)
 # show NULL value
 print("Percentage of null data:")

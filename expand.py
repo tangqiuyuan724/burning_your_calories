@@ -36,7 +36,6 @@ def calc_calories(row):
         'Yoga': 6
     }.get(workout, 8)
     return np.round(base * 100 * duration * level_factor, 2)
-
 df_large['Calories_Burned'] = df_large.apply(calc_calories, axis=1)
 
 df_large['Fat_Percentage'] = np.clip(
@@ -58,5 +57,7 @@ df_large['Experience_Level'] = np.clip(df_large['Experience_Level'], 1, 5)
 df_large['Session_Duration (hours)'] = np.clip(df_large['Session_Duration (hours)'], 0.3, 2.5)
 
 print(f"Final realistic shape: {df_large.shape}")
+print(f"Information of expanded dataset: \n{df_large.info()}")
+print(f"Description of expanded dataset: \n{df_large.describe().T}")
 
 df_large.to_csv('output/expanded.csv', index=False)

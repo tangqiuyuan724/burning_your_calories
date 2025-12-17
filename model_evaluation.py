@@ -7,7 +7,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from feature_engineering import create_interaction_features, load_and_preprocess
 
 
-def evaluate_single_dataset(modelname, type="Internal",dataset_type='Mini'):
+def evaluate_single_dataset(modelname, type="Internal",dataset_type='Seed'):
     print(f"\n{type} Evaluating on : {dataset_type} Dataset ...")
 
     # 1. 加载数据
@@ -121,7 +121,7 @@ def plot_evaluation(y_true, y_pred_lr, y_pred_rf, y_pred_nn, metrics_df, type,da
     plt.show()
 
 
-def run_full_evaluation(modelname,type='Internal',dataset_type='Mini'):
+def run_full_evaluation(modelname,type='Internal',dataset_type='Seed'):
     print(f"Starting evaluation for model: {modelname}")
     if type == 'Internal':
         evaluate_single_dataset(modelname, "Internal",dataset_type)

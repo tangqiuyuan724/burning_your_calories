@@ -8,6 +8,8 @@ df2 = pd.read_csv('original_dataset/user_nutritional_data.csv')
 print("=" * 80)
 print("Starting concat user_nutritional_data.csv")
 print("-" * 80)
+print(df2.info())
+print("-" * 80)
 print(f"Before dropping, columns of user_nutritional_data.csv:\n{df2.columns}")
 
 print("-" * 80)
@@ -50,7 +52,7 @@ print("-" * 80)
 print(f'Shape = {df.shape}')
 print("-" * 80)
 # describe data
-df.describe().T
+print(df.describe().T)
 print("=" * 80)
 
 df.to_csv('output/concat.csv', index=False)
