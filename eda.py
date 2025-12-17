@@ -1,53 +1,51 @@
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 # load data
-df=pd.read_csv('original_dataset/gym_members_exercise_tracking.csv')
+df = pd.read_csv('original_dataset/gym_members_exercise_tracking.csv')
 
-print("="*50)
+print("=" * 50)
 # 1. describe data
-#show missing value in data
+# show missing value in data
 print(f"Missing Value = {df.isnull().sum()}")
-print("="*50)
-#show duplicated value
+print("=" * 50)
+# show duplicated value
 print(f'Duplicated = {df.duplicated().sum()}')
-print("="*50)
-#the shape of data
-print (f'Shape = {df.shape}')
-print("="*50)
-#describe data
+print("=" * 50)
+# the shape of data
+print(f'Shape = {df.shape}')
+print("=" * 50)
+# describe data
 print("Description of data:")
 df.describe().T
-print("="*50)
-#data info to know numerical and categorical values
+print("=" * 50)
+# data info to know numerical and categorical values
 print("Information of data:")
 df.info()
-print("="*50)
-#show NULL value
+print("=" * 50)
+# show NULL value
 print("Percentage of null data:")
 data_null = round(df.isna().sum() / df.shape[0] * 100, 2)
-data_null.to_frame(name = 'percent NULL data (%)')
+data_null.to_frame(name='percent NULL data (%)')
 print(data_null)
 
-print("="*50)
+print("=" * 50)
 # 2. data visualization
 # show Numerical columns before analysis
 numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
 print("Numerical Columns:")
 print(numerical_cols)
-print("="*50)
+print("=" * 50)
 # show Categorical columns before analysis
 categorical_cols = df.select_dtypes(include=['object', 'category']).columns
 print("Categorical Columns:")
 print(categorical_cols)
-print("="*50)
+print("=" * 50)
 
 # A. Fat_Percentage vs Calories Burned
 # the higher the percentage of body fat, the lower the number of calories burned by the body
-sns.lineplot(data=df, x="Calories_Burned",color="skyblue" ,y="Fat_Percentage")
+sns.lineplot(data=df, x="Calories_Burned", color="skyblue", y="Fat_Percentage")
 plt.title("Fat_Percentage vs Calories Burned")
 plt.show()
 
@@ -55,7 +53,7 @@ plt.show()
 # exercising more than once per week leads to a consistent increase in overall energy expenditure.
 sns.set_theme(style="whitegrid")
 custom_palette = {
-    "Male": "#1f77b4",   # Soft blue
+    "Male": "#1f77b4",  # Soft blue
     "Female": "#ff7f0e"  # Soft orange
 }
 plt.figure(figsize=(10, 6))
@@ -91,15 +89,15 @@ plt.tight_layout()
 plt.show()
 
 # C. Session Duration distribution by gender
-sns.histplot(data=df, x="Session_Duration (hours)", kde=True,hue="Gender", multiple="stack")
+sns.histplot(data=df, x="Session_Duration (hours)", kde=True, hue="Gender", multiple="stack")
 plt.title("Stacked Histogram by Gender")
 plt.show()
-print("="*50)
+print("=" * 50)
 
 # D. Experience Level Analysis
 # Set professional style
 sns.set_theme(style="whitegrid")
-num_cols = ['Age', 'Weight (kg)','Session_Duration (hours)', 'Calories_Burned',
+num_cols = ['Age', 'Weight (kg)', 'Session_Duration (hours)', 'Calories_Burned',
             'Fat_Percentage', 'BMI']
 
 # Define color palette
