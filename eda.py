@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+pd.set_option('display.max_columns', None)
 # load data
 df = pd.read_csv('original_dataset/gym_members_exercise_tracking.csv')
 
@@ -141,4 +141,9 @@ plt.xlabel("Experience Level")
 plt.ylabel("Count of Participants")
 plt.legend(title="Workout Type", title_fontsize=11)
 plt.tight_layout()
+plt.show()
+
+# E. session_duration distribution
+sns.histplot(data=df, x="Session_Duration (hours)",color="green" ,kde=True)
+plt.title("Session Duration (hours) Distribution")
 plt.show()
