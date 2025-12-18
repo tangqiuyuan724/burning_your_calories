@@ -32,32 +32,26 @@ def train_models(filename, modelname, test_size=0.2):
     y_train = train_df['Target']
 
     # ==========================================
-    # 模型 A: 线性回归 (无截距)
+    # Model A: Linear Regression (No Intercept)
     # ==========================================
-    print("Training Linear Regression (No Intercept)...")
     lr_model = LinearRegression(fit_intercept=False)
     lr_model.fit(X_train, y_train)
-
     # ==========================================
-    # 模型 B: 随机森林 (Random Forest) <--- 新增部分
+    # Model B: Random Forest
     # ==========================================
     print("Training Random Forest...")
-    # 随机森林不需要特征标准化，直接用 X_train
     rf_model = RandomForestRegressor(
-        n_estimators=100,  # 树的数量
-        max_depth=None,  # 深度不限
+        n_estimators=100,
+        max_depth=None,
         random_state=42,
-        n_jobs=-1  # 使用所有CPU核心加速
+        n_jobs=-1
     )
     rf_model.fit(X_train, y_train)
-
     # ==========================================
-    # 模型 C: 神经网络 (需要标准化)
+    # model C: Neural Network
     # ==========================================
-    print("Training Neural Network...")
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
-
     nn_model = MLPRegressor(
         hidden_layer_sizes=(64, 32),
         activation='relu',

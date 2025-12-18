@@ -34,6 +34,7 @@ def load_and_preprocess(filepath, is_training=True):
     else:
         # 处理 calories.csv (验证集)
         rename_map = {
+            'Calories':'Target',
             'Calories_Burned': 'Target',
             'Duration': 'Duration_min',  # 已经是分钟
             'Height': 'Height_cm'  # 已经是厘米
@@ -49,8 +50,8 @@ def load_and_preprocess(filepath, is_training=True):
 
 def create_interaction_features(df):
     """
-    构造物理交互特征。
-    核心逻辑：能量消耗 = 功率(由体重、心率决定) * 时间
+    Construct physical interaction features.
+    Core logic: Energy consumption = Power (determined by body weight and heart rate) * Time
     """
     df_feat = pd.DataFrame()
 
